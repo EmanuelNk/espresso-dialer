@@ -3,6 +3,7 @@ import { useApp } from '../context/AppContext';
 import { Shot } from '../types';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, ScatterChart, Scatter } from 'recharts';
 import { BarChart3, TrendingUp, Coffee, Clock } from 'lucide-react';
+import FlavorBar from '../components/FlavorBar';
 
 const Stats: React.FC = () => {
   const { state } = useApp();
@@ -144,7 +145,7 @@ const Stats: React.FC = () => {
                   Time vs Grind Size
                 </h3>
                 <ResponsiveContainer width="100%" height={200}>
-                  <ScatterChart data={timeGrindData}>
+                  <LineChart data={timeGrindData}>
                     <CartesianGrid strokeDasharray="3 3" stroke="var(--border-color)" />
                     <XAxis 
                       dataKey="grindSize" 
@@ -157,14 +158,11 @@ const Stats: React.FC = () => {
                       label={{ value: 'Time (s)', angle: -90, position: 'insideLeft' }}
                     />
                     <Tooltip 
-                      contentStyle={{ 
-                        backgroundColor: 'var(--card-bg)', 
-                        border: '1px solid var(--border-color)',
-                        borderRadius: '8px'
-                      }}
+                      contentStyle={{ background: 'none', border: 'none', borderRadius: 0, boxShadow: 'none' }}
+                      wrapperClassName="chart-tooltip"
                     />
-                    <Scatter dataKey="time" fill="var(--primary-coffee)" />
-                  </ScatterChart>
+                    <Line type="monotone" dataKey="time" stroke="var(--gold)" strokeWidth={2} dot={{ r: 4, fill: '#aa6e2a' }} />
+                  </LineChart>
                 </ResponsiveContainer>
               </div>
 
@@ -184,25 +182,24 @@ const Stats: React.FC = () => {
                     />
                     <YAxis stroke="var(--text-secondary)" />
                     <Tooltip 
-                      contentStyle={{ 
-                        backgroundColor: 'var(--card-bg)', 
-                        border: '1px solid var(--border-color)',
-                        borderRadius: '8px'
-                      }}
+                      contentStyle={{ background: 'none', border: 'none', borderRadius: 0, boxShadow: 'none' }}
+                      wrapperClassName="chart-tooltip"
                     />
                     <Line 
                       type="monotone" 
                       dataKey="time" 
-                      stroke="var(--primary-coffee)" 
+                      stroke="#aa6e2a" 
                       strokeWidth={2}
                       name="Time (s)"
+                      dot={{ r: 4, fill: '#aa6e2a' }}
                     />
                     <Line 
                       type="monotone" 
                       dataKey="ratio" 
-                      stroke="var(--accent-orange)" 
+                      stroke="var(--red)"
                       strokeWidth={2}
                       name="Ratio"
+                      dot={{ r: 4, fill: '#7c2f3b' }}
                     />
                   </LineChart>
                 </ResponsiveContainer>
@@ -215,36 +212,15 @@ const Stats: React.FC = () => {
                 <Coffee size={20} style={{ marginRight: '0.5rem' }} />
                 Average Taste Profile
               </h3>
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1rem' }}>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', maxWidth: 320 }}>
                 {tasteData.map((item) => (
-                  <div key={item.taste} style={{ textAlign: 'center' }}>
-                    <div style={{ 
-                      height: '100px', 
-                      display: 'flex', 
-                      alignItems: 'end', 
-                      justifyContent: 'center',
-                      marginBottom: '0.5rem'
-                    }}>
-                      <div style={{
-                        width: '40px',
-                        height: `${item.value * 10}%`,
-                        backgroundColor: 'var(--primary-coffee)',
-                        borderRadius: '4px 4px 0 0',
-                        display: 'flex',
-                        alignItems: 'start',
-                        justifyContent: 'center',
-                        paddingTop: '0.25rem',
-                        color: 'var(--dark-bg)',
-                        fontSize: '0.8rem',
-                        fontWeight: 'bold'
-                      }}>
-                        {item.value.toFixed(1)}
-                      </div>
-                    </div>
-                    <div style={{ color: 'var(--text-secondary)', fontSize: '0.9rem' }}>
-                      {item.taste}
-                    </div>
-                  </div>
+                  <FlavorBar 
+                    key={item.taste} 
+                    label={item.taste} 
+                    value={Number(item.value.toFixed(1))} 
+                    color="var(--gold)" 
+                    max={10} 
+                  />
                 ))}
               </div>
             </div>

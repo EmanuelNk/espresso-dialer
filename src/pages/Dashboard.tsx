@@ -103,15 +103,15 @@ const Dashboard: React.FC = () => {
               <Plus size={20} />
               Record New Shot
             </Link>
-            <Link to="/beans" className="btn btn-secondary">
+            <Link to="/beans" className="btn" style={{ background: 'var(--card-bg-secondary)', color: 'var(--text-primary)', border: 'none' }}>
               <Coffee size={20} />
               Add Beans
             </Link>
-            <Link to="/equipment" className="btn btn-secondary">
+            <Link to="/equipment" className="btn" style={{ background: 'var(--card-bg-secondary)', color: 'var(--text-primary)', border: 'none' }}>
               <Settings size={20} />
               Manage Equipment
             </Link>
-            <Link to="/stats" className="btn btn-secondary">
+            <Link to="/stats" className="btn" style={{ background: 'var(--card-bg-secondary)', color: 'var(--text-primary)', border: 'none' }}>
               <BarChart3 size={20} />
               View Statistics
             </Link>
@@ -183,7 +183,7 @@ const Dashboard: React.FC = () => {
         <div className="card">
           <div className="card-header">
             <h2 className="card-title">Recent Shots</h2>
-            <Link to="/shots" className="btn btn-secondary">
+            <Link to="/shots" className="btn" style={{ background: 'var(--card-bg-secondary)', color: 'var(--text-primary)', border: 'none' }}>
               View All
             </Link>
           </div>
@@ -199,9 +199,10 @@ const Dashboard: React.FC = () => {
                   justifyContent: 'space-between',
                   alignItems: 'center',
                   padding: '1rem',
-                  backgroundColor: 'var(--dark-bg)',
-                  borderRadius: '8px',
-                  border: '1px solid var(--border-color)'
+                  backgroundColor: 'var(--card-bg-secondary)',
+                  borderRadius: '16px',
+                  border: 'none',
+                  boxShadow: '0 2px 8px 0 rgba(0,0,0,0.08)'
                 }}>
                   <div>
                     <h4 style={{ color: 'var(--text-primary)', marginBottom: '0.25rem' }}>

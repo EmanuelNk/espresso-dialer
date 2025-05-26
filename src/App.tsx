@@ -24,7 +24,7 @@ function App() {
               <Route path="/stats" element={<Stats />} />
             </Routes>
           </main>
-        </div>
+    </div>
       </Router>
     </AppProvider>
   );
