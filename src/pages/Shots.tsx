@@ -4,6 +4,7 @@ import { Shot } from '../types';
 import { Plus, Clock, Scale, Thermometer } from 'lucide-react';
 import { useSearchParams } from 'react-router-dom';
 import Slider from '../components/Slider';
+import FlavorBar from '../components/FlavorBar';
 
 const Shots: React.FC = () => {
   const { state, dispatch } = useApp();
@@ -219,38 +220,36 @@ const Shots: React.FC = () => {
 
             <div style={{ marginTop: '1rem' }}>
               <h4 style={{ color: 'var(--text-primary)', marginBottom: '1rem' }}>Taste Profile</h4>
-              
-              <Slider
-                label="Acidity"
-                value={shotForm.acidity}
-                min={1}
-                max={10}
-                onChange={(value) => setShotForm({ ...shotForm, acidity: value })}
-              />
-              
-              <Slider
-                label="Bitterness"
-                value={shotForm.bitterness}
-                min={1}
-                max={10}
-                onChange={(value) => setShotForm({ ...shotForm, bitterness: value })}
-              />
-              
-              <Slider
-                label="Sweetness"
-                value={shotForm.sweetness}
-                min={1}
-                max={10}
-                onChange={(value) => setShotForm({ ...shotForm, sweetness: value })}
-              />
-              
-              <Slider
-                label="Fruitiness"
-                value={shotForm.fruitiness}
-                min={1}
-                max={10}
-                onChange={(value) => setShotForm({ ...shotForm, fruitiness: value })}
-              />
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+                <FlavorBar
+                  label="Acidity"
+                  value={shotForm.acidity}
+                  color="var(--gold)"
+                  max={10}
+                  onChange={(v) => setShotForm({ ...shotForm, acidity: v })}
+                />
+                <FlavorBar
+                  label="Bitterness"
+                  value={shotForm.bitterness}
+                  color="var(--gold)"
+                  max={10}
+                  onChange={(v) => setShotForm({ ...shotForm, bitterness: v })}
+                />
+                <FlavorBar
+                  label="Sweetness"
+                  value={shotForm.sweetness}
+                  color="var(--gold)"
+                  max={10}
+                  onChange={(v) => setShotForm({ ...shotForm, sweetness: v })}
+                />
+                <FlavorBar
+                  label="Fruitiness"
+                  value={shotForm.fruitiness}
+                  color="var(--gold)"
+                  max={10}
+                  onChange={(v) => setShotForm({ ...shotForm, fruitiness: v })}
+                />
+              </div>
             </div>
 
             <div style={{ display: 'flex', gap: '1rem', marginTop: '2rem' }}>
