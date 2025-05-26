@@ -13,7 +13,8 @@ const Beans: React.FC = () => {
   const [beanForm, setBeanForm] = useState({
     roaster: '',
     origin: '',
-    roastType: '',
+    processType: '',
+    roastDate: '',
     roastLevel: '',
     notes: '',
   });
@@ -25,7 +26,7 @@ const Beans: React.FC = () => {
       ...beanForm,
     };
     dispatch({ type: 'ADD_BEAN', payload: newBean });
-    setBeanForm({ roaster: '', origin: '', roastType: '', roastLevel: '', notes: '' });
+    setBeanForm({ roaster: '', origin: '', processType: '', roastDate: '', roastLevel: '', notes: '' });
     setShowForm(false);
   };
 
@@ -40,6 +41,14 @@ const Beans: React.FC = () => {
   const getGrinderForBean = (beanId: string) => {
     // For simplicity, we'll use the first grinder if available
     return state.grinders[0] || null;
+  };
+
+  const getDaysFromRoast = (roastDate: string) => {
+    const roast = new Date(roastDate);
+    const today = new Date();
+    const diffTime = Math.abs(today.getTime() - roast.getTime());
+    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+    return diffDays;
   };
 
   return (
@@ -59,7 +68,7 @@ const Beans: React.FC = () => {
         <div className="card" style={{ marginBottom: '2rem' }}>
           <form onSubmit={handleAddBean}>
             <h3 style={{ marginBottom: '1rem', color: 'var(--text-primary)' }}>Add New Beans</h3>
-            <div className="grid grid-2">
+            <div className="grid grid-3">
               <div className="form-group">
                 <label className="form-label">Roaster</label>
                 <input
@@ -81,18 +90,31 @@ const Beans: React.FC = () => {
                 />
               </div>
               <div className="form-group">
-                <label className="form-label">Roast Type</label>
+                <label className="form-label">Process Type</label>
                 <select
                   className="form-select"
-                  value={beanForm.roastType}
-                  onChange={(e) => setBeanForm({ ...beanForm, roastType: e.target.value })}
+                  value={beanForm.processType}
+                  onChange={(e) => setBeanForm({ ...beanForm, processType: e.target.value })}
                   required
                 >
-                  <option value="">Select roast type</option>
-                  <option value="Single Origin">Single Origin</option>
-                  <option value="Blend">Blend</option>
-                  <option value="Decaf">Decaf</option>
+                  <option value="">Select process type</option>
+                  <option value="Washed">Washed</option>
+                  <option value="Natural">Natural</option>
+                  <option value="Honey">Honey</option>
+                  <option value="Anaerobic">Anaerobic</option>
+                  <option value="Semi-washed">Semi-washed</option>
+                  <option value="Wet-hulled">Wet-hulled</option>
                 </select>
+              </div>
+              <div className="form-group">
+                <label className="form-label">Roast Date</label>
+                <input
+                  type="date"
+                  className="form-input"
+                  value={beanForm.roastDate}
+                  onChange={(e) => setBeanForm({ ...beanForm, roastDate: e.target.value })}
+                  required
+                />
               </div>
               <div className="form-group">
                 <label className="form-label">Roast Level</label>
@@ -136,13 +158,33 @@ const Beans: React.FC = () => {
         </div>
       )}
 
-      <div className="grid grid-2">
-        {state.beans.map((bean) => {
+      {/* Group beans by roaster */}
+      {Object.entries(
+        state.beans.reduce((acc, bean) => {
+          if (!acc[bean.roaster]) {
+            acc[bean.roaster] = [];
+          }
+          acc[bean.roaster].push(bean);
+          return acc;
+        }, {} as Record<string, typeof state.beans>)
+      ).map(([roaster, beans]) => (
+        <div key={roaster} style={{ marginBottom: '2rem' }}>
+          <h2 style={{ 
+            color: 'var(--primary-coffee)', 
+            marginBottom: '1rem',
+            fontSize: '1.5rem',
+            borderBottom: '2px solid var(--border-color)',
+            paddingBottom: '0.5rem'
+          }}>
+            {roaster}
+          </h2>
+          <div className="grid grid-2">
+            {beans.map((bean) => {
           const grinder = getGrinderForBean(bean.id);
           return (
             <div key={bean.id} className="card">
               <div className="card-header">
-                <h3 className="card-title">{bean.roaster}</h3>
+                <h3 className="card-title">{bean.roaster} - {bean.origin}</h3>
                 <button
                   className="btn btn-danger"
                   onClick={() => dispatch({ type: 'DELETE_BEAN', payload: bean.id })}
@@ -154,10 +196,21 @@ const Beans: React.FC = () => {
               
               <div style={{ marginBottom: '1rem' }}>
                 <p style={{ color: 'var(--text-secondary)', marginBottom: '0.5rem' }}>
-                  <strong>Origin:</strong> {bean.origin}
+                  <strong>Process:</strong> {bean.processType}
                 </p>
                 <p style={{ color: 'var(--text-secondary)', marginBottom: '0.5rem' }}>
-                  <strong>Type:</strong> {bean.roastType}
+                  <strong>Roast Date:</strong> {new Date(bean.roastDate).toLocaleDateString()} 
+                  <span style={{ 
+                    marginLeft: '0.5rem', 
+                    padding: '0.25rem 0.5rem', 
+                    backgroundColor: getDaysFromRoast(bean.roastDate) <= 14 ? 'var(--success)' : getDaysFromRoast(bean.roastDate) <= 30 ? 'var(--warning)' : 'var(--error)',
+                    color: 'white',
+                    borderRadius: '4px',
+                    fontSize: '0.8rem',
+                    fontWeight: 'bold'
+                  }}>
+                    {getDaysFromRoast(bean.roastDate)} days
+                  </span>
                 </p>
                 <p style={{ color: 'var(--text-secondary)', marginBottom: '0.5rem' }}>
                   <strong>Roast Level:</strong> {bean.roastLevel}
@@ -233,7 +286,9 @@ const Beans: React.FC = () => {
             </div>
           );
         })}
-      </div>
+          </div>
+        </div>
+      ))}
 
       {state.beans.length === 0 && !showForm && (
         <div className="empty-state">
