@@ -176,6 +176,7 @@ const Beans: React.FC = () => {
                     value={bean.grindSetting || grinder.minGrindSetting}
                     min={grinder.minGrindSetting}
                     max={grinder.maxGrindSetting}
+                    step={0.1}
                     onChange={(value) => handleGrindSettingChange(bean.id, grinder.id, value)}
                   />
                 </div>

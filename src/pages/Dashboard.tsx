@@ -212,7 +212,7 @@ const Dashboard: React.FC = () => {
                     </p>
                   </div>
                   <div style={{ display: 'flex', gap: '1rem', color: 'var(--text-primary)', fontSize: '0.9rem' }}>
-                    <span>Grind: {shot.grindSize}</span>
+                    <span>Grind: {shot.grindSize.toFixed(1)}</span>
                     <span>Time: {shot.shotTime}s</span>
                     <span>Ratio: {getRatio(shot.doseIn, shot.yieldOut)}</span>
                   </div>
