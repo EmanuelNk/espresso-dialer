@@ -14,7 +14,7 @@ const Shots: React.FC = () => {
     beanId: searchParams.get('bean') || '',
     grinderId: '',
     machineId: '',
-    grindSize: 5,
+    grindSize: 5.0,
     shotTime: 25,
     yieldOut: 36,
     doseIn: 18,
@@ -44,7 +44,7 @@ const Shots: React.FC = () => {
       beanId: '',
       grinderId: '',
       machineId: '',
-      grindSize: 5,
+      grindSize: 5.0,
       shotTime: 25,
       yieldOut: 36,
       doseIn: 18,
@@ -163,6 +163,7 @@ const Shots: React.FC = () => {
                 value={shotForm.grindSize}
                 min={getSelectedGrinder()!.minGrindSetting}
                 max={getSelectedGrinder()!.maxGrindSetting}
+                step={0.1}
                 onChange={(value) => setShotForm({ ...shotForm, grindSize: value })}
               />
             )}
@@ -290,7 +291,7 @@ const Shots: React.FC = () => {
                   <strong>Equipment:</strong> {grinder?.name} + {machine?.name}
                 </p>
                 <p style={{ color: 'var(--text-secondary)', marginBottom: '0.5rem' }}>
-                  <strong>Grind:</strong> {shot.grindSize}
+                  <strong>Grind:</strong> {shot.grindSize.toFixed(1)}
                 </p>
               </div>
 

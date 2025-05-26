@@ -17,7 +17,8 @@ export interface Bean {
   id: string;
   roaster: string;
   origin: string;
-  roastType: string;
+  processType: string;
+  roastDate: string;
   roastLevel: string;
   notes: string;
   grindSetting?: number;

@@ -267,14 +267,14 @@ const Stats: React.FC = () => {
                       borderRadius: '8px',
                       fontSize: '0.9rem'
                     }}>
-                      <span style={{ color: 'var(--text-secondary)' }}>
-                        {bean?.roaster} - {bean?.origin}
-                      </span>
-                      <div style={{ display: 'flex', gap: '1rem', color: 'var(--text-primary)' }}>
-                        <span>Grind: {shot.grindSize}</span>
-                        <span>Time: {shot.shotTime}s</span>
-                        <span>Ratio: 1:{(shot.yieldOut / shot.doseIn).toFixed(1)}</span>
-                      </div>
+                                             <span style={{ color: 'var(--text-secondary)' }}>
+                         {bean?.roaster} - {bean?.origin}
+                       </span>
+                                             <div style={{ display: 'flex', gap: '1rem', color: 'var(--text-primary)' }}>
+                         <span>Grind: {shot.grindSize.toFixed(1)}</span>
+                         <span>Time: {shot.shotTime}s</span>
+                         <span>Ratio: 1:{(shot.yieldOut / shot.doseIn).toFixed(1)}</span>
+                       </div>
                     </div>
                   );
                 })}

@@ -15,7 +15,7 @@ const Slider: React.FC<SliderProps> = ({
   value,
   min,
   max,
-  step = 1,
+  step = 0.1,
   onChange,
   unit = '',
 }) => {
@@ -23,7 +23,17 @@ const Slider: React.FC<SliderProps> = ({
     <div className="slider-container">
       <div className="slider-label">
         <span>{label}</span>
-        <span>{value}{unit}</span>
+        <span style={{ 
+          fontSize: '1.2rem', 
+          fontWeight: 'bold', 
+          color: 'var(--primary-coffee)',
+          backgroundColor: 'var(--card-bg)',
+          padding: '0.25rem 0.75rem',
+          borderRadius: '6px',
+          border: '1px solid var(--border-color)'
+        }}>
+          {value.toFixed(1)}{unit}
+        </span>
       </div>
       <input
         type="range"
@@ -35,8 +45,8 @@ const Slider: React.FC<SliderProps> = ({
         onChange={(e) => onChange(Number(e.target.value))}
       />
       <div className="slider-label">
-        <span>{min}{unit}</span>
-        <span>{max}{unit}</span>
+        <span>{min.toFixed(1)}{unit}</span>
+        <span>{max.toFixed(1)}{unit}</span>
       </div>
     </div>
   );

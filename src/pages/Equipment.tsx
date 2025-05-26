@@ -11,8 +11,8 @@ const Equipment: React.FC = () => {
   const [grinderForm, setGrinderForm] = useState({
     name: '',
     brand: '',
-    minGrindSetting: 1,
-    maxGrindSetting: 10,
+    minGrindSetting: 1.0,
+    maxGrindSetting: 10.0,
   });
 
   const [machineForm, setMachineForm] = useState({
@@ -28,7 +28,7 @@ const Equipment: React.FC = () => {
       ...grinderForm,
     };
     dispatch({ type: 'ADD_GRINDER', payload: newGrinder });
-    setGrinderForm({ name: '', brand: '', minGrindSetting: 1, maxGrindSetting: 10 });
+    setGrinderForm({ name: '', brand: '', minGrindSetting: 1.0, maxGrindSetting: 10.0 });
     setShowGrinderForm(false);
   };
 
@@ -92,6 +92,8 @@ const Equipment: React.FC = () => {
                     className="form-input"
                     value={grinderForm.minGrindSetting}
                     onChange={(e) => setGrinderForm({ ...grinderForm, minGrindSetting: Number(e.target.value) })}
+                    step="0.1"
+                    min="0"
                     required
                   />
                 </div>
@@ -102,6 +104,8 @@ const Equipment: React.FC = () => {
                     className="form-input"
                     value={grinderForm.maxGrindSetting}
                     onChange={(e) => setGrinderForm({ ...grinderForm, maxGrindSetting: Number(e.target.value) })}
+                    step="0.1"
+                    min="0"
                     required
                   />
                 </div>
@@ -138,9 +142,9 @@ const Equipment: React.FC = () => {
               <p style={{ color: 'var(--text-secondary)', marginBottom: '0.5rem' }}>
                 Brand: {grinder.brand}
               </p>
-              <p style={{ color: 'var(--text-secondary)' }}>
-                Grind Range: {grinder.minGrindSetting} - {grinder.maxGrindSetting}
-              </p>
+                              <p style={{ color: 'var(--text-secondary)' }}>
+                  Grind Range: {grinder.minGrindSetting.toFixed(1)} - {grinder.maxGrindSetting.toFixed(1)}
+                </p>
             </div>
           ))}
         </div>
