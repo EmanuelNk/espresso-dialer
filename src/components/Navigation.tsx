@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Coffee } from 'lucide-react';
+import { Coffee, Home, Settings, Droplet, BarChart3 } from 'lucide-react';
+import { coffeeBean } from '@lucide/lab';
+import { Icon } from 'lucide-react';
 
 const Navigation: React.FC = () => {
   const location = useLocation();
@@ -14,33 +16,33 @@ const Navigation: React.FC = () => {
       <div className="container">
         <div className="nav-content">
           <Link to="/" className="nav-brand">
-            <Coffee size={24} />
+            <Coffee size={24} style={{ marginRight: 8 }} />
             Espresso Dialer
           </Link>
           <ul className="nav-links">
             <li>
-              <Link to="/" className={isActive('/')}>
-                Dashboard
+              <Link to="/" className={isActive('/')}> 
+                <Home size={20} />
               </Link>
             </li>
             <li>
               <Link to="/beans" className={isActive('/beans')}>
-                Beans
+                <Icon iconNode={coffeeBean} size={20} />
               </Link>
             </li>
             <li>
               <Link to="/equipment" className={isActive('/equipment')}>
-                Equipment
+                <Settings size={20} />
               </Link>
             </li>
             <li>
               <Link to="/shots" className={isActive('/shots')}>
-                Shots
+                <Coffee size={20} />
               </Link>
             </li>
             <li>
               <Link to="/stats" className={isActive('/stats')}>
-                Stats
+                <BarChart3 size={20} />
               </Link>
             </li>
           </ul>

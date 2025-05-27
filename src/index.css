@@ -18,7 +18,8 @@ body {
 }
 
 :root {
-  --primary: #2b4241;
+  --primary-blue: #2b4241;
+  --primary: #64362f;
   --secondary: #232323;
   --accent: #905c24;
   --background: #0c0b0e;
@@ -78,9 +79,14 @@ body {
 .nav-link {
   color: var(--text-secondary);
   text-decoration: none;
-  padding: 0.5rem 1rem;
-  border-radius: 8px;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
   transition: all 0.3s ease;
+  padding: 0;
 }
 
 .nav-link:hover,
@@ -311,8 +317,11 @@ body {
   }
   
   .nav-link {
-    padding: 0.5rem;
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
     font-size: 0.9rem;
+    padding: 0;
   }
   
   .card {
@@ -325,7 +334,7 @@ body {
   }
   
   .stats-grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 1fr 1fr !important;
   }
 }
 

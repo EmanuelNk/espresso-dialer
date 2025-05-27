@@ -2,6 +2,8 @@ import React from 'react';
 import { useApp } from '../context/AppContext';
 import { Link } from 'react-router-dom';
 import { Coffee, Settings, Plus, BarChart3, Clock, Scale } from 'lucide-react';
+import { coffeeBean } from '@lucide/lab';
+import { Icon } from 'lucide-react';
 
 const Dashboard: React.FC = () => {
   const { state } = useApp();
@@ -50,20 +52,20 @@ const Dashboard: React.FC = () => {
 
       {/* Quick Stats */}
       <div className="stats-grid" style={{ marginBottom: '2rem' }}>
-        <div className="stat-card">
-          <div className="stat-value">{state.shots.length}</div>
+        <div className="stat-card" style={{ background: 'var(--gold)', color: '#fff' }}>
+          <div className="stat-value" style={{ color: '#fff' }}>{state.shots.length}</div>
           <div className="stat-label">Total Shots</div>
         </div>
-        <div className="stat-card">
-          <div className="stat-value">{state.beans.length}</div>
+        <div className="stat-card" style={{ background: 'var(--primary)', color: '#fff' }}>
+          <div className="stat-value" style={{ color: '#fff' }}>{state.beans.length}</div>
           <div className="stat-label">Beans Registered</div>
         </div>
-        <div className="stat-card">
-          <div className="stat-value">{state.grinders.length}</div>
+        <div className="stat-card" style={{ background: 'var(--secondary)', color: '#fff' }}>
+          <div className="stat-value" style={{ color: '#fff' }}>{state.grinders.length}</div>
           <div className="stat-label">Grinders</div>
         </div>
-        <div className="stat-card">
-          <div className="stat-value">{state.machines.length}</div>
+        <div className="stat-card" style={{ background: 'var(--secondary)', color: '#fff' }}>
+          <div className="stat-value" style={{ color: '#fff' }}>{state.machines.length}</div>
           <div className="stat-label">Machines</div>
         </div>
       </div>
@@ -104,7 +106,7 @@ const Dashboard: React.FC = () => {
               Record New Shot
             </Link>
             <Link to="/beans" className="btn btn-action">
-              <Coffee size={20} />
+              <Icon iconNode={coffeeBean} size={18} />
               Add Beans
             </Link>
             <Link to="/equipment" className="btn btn-action">
