@@ -12,7 +12,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: #0c0b0e;
+  background: linear-gradient(135deg, var(--background) 0%, #47423a 100%);
   color: #fff;
   min-height: 100vh;
 }
@@ -38,7 +38,6 @@ body {
 
 .app {
   min-height: 100vh;
-  background: var(--background);
 }
 
 .container {
