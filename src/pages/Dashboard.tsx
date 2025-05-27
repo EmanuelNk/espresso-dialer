@@ -52,19 +52,19 @@ const Dashboard: React.FC = () => {
 
       {/* Quick Stats */}
       <div className="stats-grid" style={{ marginBottom: '2rem' }}>
-        <div className="stat-card" style={{ background: 'var(--gold)', color: '#fff' }}>
+        <div className="stat-card" style={{ background: 'linear-gradient(120deg, #aa6e2a 60%,rgb(208, 154, 78) 100%)', color: '#fff' }}>
           <div className="stat-value" style={{ color: '#fff' }}>{state.shots.length}</div>
           <div className="stat-label">Total Shots</div>
         </div>
-        <div className="stat-card" style={{ background: 'var(--primary)', color: '#fff' }}>
+        <div className="stat-card" style={{ background: 'linear-gradient(120deg, #2b4241 60%,rgb(59, 111, 96) 100%)', color: '#fff' }}>
           <div className="stat-value" style={{ color: '#fff' }}>{state.beans.length}</div>
           <div className="stat-label">Beans Registered</div>
         </div>
-        <div className="stat-card" style={{ background: 'var(--secondary)', color: '#fff' }}>
+        <div className="stat-card" style={{ background: 'linear-gradient(120deg, #232323 60%, #444444 100%)', color: '#fff', opacity: 0.8 }}>
           <div className="stat-value" style={{ color: '#fff' }}>{state.grinders.length}</div>
           <div className="stat-label">Grinders</div>
         </div>
-        <div className="stat-card" style={{ background: 'var(--secondary)', color: '#fff' }}>
+        <div className="stat-card" style={{ background: 'linear-gradient(120deg, #232323 60%, #444444 100%)', color: '#fff', opacity: 0.8 }}>
           <div className="stat-value" style={{ color: '#fff' }}>{state.machines.length}</div>
           <div className="stat-label">Machines</div>
         </div>
