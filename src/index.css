@@ -164,6 +164,20 @@ body {
   background: #7a4a1a;
 }
 
+.btn-action {
+  background: var(--card-bg-secondary);
+  color: var(--text-primary);
+  border: none;
+  transition: background 0.2s, box-shadow 0.2s, transform 0.2s;
+}
+
+.btn-action:hover, .btn-action:focus {
+  background: #1a1b1e;
+  box-shadow: 0 4px 16px 0 rgba(0,0,0,0.12);
+  transform: translateY(-2px) scale(1.03);
+  color: var(--gold);
+}
+
 /* Forms */
 .form-group {
   margin-bottom: 1rem;

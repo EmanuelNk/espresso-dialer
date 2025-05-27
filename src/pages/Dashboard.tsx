@@ -103,15 +103,15 @@ const Dashboard: React.FC = () => {
               <Plus size={20} />
               Record New Shot
             </Link>
-            <Link to="/beans" className="btn" style={{ background: 'var(--card-bg-secondary)', color: 'var(--text-primary)', border: 'none' }}>
+            <Link to="/beans" className="btn btn-action">
               <Coffee size={20} />
               Add Beans
             </Link>
-            <Link to="/equipment" className="btn" style={{ background: 'var(--card-bg-secondary)', color: 'var(--text-primary)', border: 'none' }}>
+            <Link to="/equipment" className="btn btn-action">
               <Settings size={20} />
               Manage Equipment
             </Link>
-            <Link to="/stats" className="btn" style={{ background: 'var(--card-bg-secondary)', color: 'var(--text-primary)', border: 'none' }}>
+            <Link to="/stats" className="btn btn-action">
               <BarChart3 size={20} />
               View Statistics
             </Link>
